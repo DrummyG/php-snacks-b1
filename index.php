@@ -171,12 +171,12 @@ $classe = [
     <p><?php echo $warn; ?></p>
 
     <h2>Snack 3</h2>
-    <p><?php for($i = 0; $i < count($posts); $i++){ ?>
+    <p><?php foreach($posts as $keyOne => $valueOne){ ?>
         <li>
-        <?php echo $posts[$i].'-'?>
+        <?php echo $keyOne.'-'?>
         <ul>
-            <li><?php foreach($posts[$i] as $value){
-            echo $value["title"].': '.$value["author"].'- '.$value["text"];
+            <li><?php foreach($valueOne as $valueTwo => $x){
+            echo $x["title"].': '.$x["author"].'- '.$x["text"].'</br>';
         }?></li>
         </ul>
         </li>
