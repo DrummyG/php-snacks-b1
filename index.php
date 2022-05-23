@@ -25,9 +25,9 @@ $nome = $_GET['name'];
 $age = $_GET['age'];
 
 if(strlen($nome) > 3 && strpos('@', $email) && strpos('.', $email) && is_numeric($age)){
-    $warn = 'Accesso riuscito'
+    $warn = 'Accesso riuscito';
 } else{
-    $warn = 'Accesso negato'
+    $warn = 'Accesso negato';
 };
 
 // snack 3
@@ -76,10 +76,12 @@ $posts = [
 
 $numbers = [];
 for($i = 0; $i < 15; $i++){
-    if(!in_array($i, $numbers)){
-        array_push($numbers, $i)
+    $numero = rand(1, 40);
+    if(!in_array($numero, $numbers)){
+        array_push($numbers, $numero);
     };
 };
+$results = print_r($numbers, true);
 
 // snack 5
 
@@ -152,26 +154,29 @@ $classe = [
             background-color: green;
         };
         .pm{
-            background-color: grey;
+            background-color: gray;
         }
     </style>
 </head>
 <body>
     <h2>Snack 1</h2>
-    <ul><?php foreach($games as $value){
-        echo '<li>{$value[$casa]} - {$value[$ospite]} | {$value[$risultato]} </li>'
-    } ?></ul>
+    <ul><?php foreach($games as $value){?>
+        <li>
+                
+        <?php echo $value["casa"].' - '.$value["ospite"].' | '.$value["risultato"]; ?>
+        </li> 
+    <?php } ?></ul>
 
     <h2>Snack 2</h2>
-    <p><?php echo $warn ?></p>
+    <p><?php echo $warn; ?></p>
 
     <h2>Snack 3</h2>
     <p><?php for($i = 0; $i < count($posts); $i++){ ?>
         <li>
-        <?php echo $posts[$i] '-'?>
+        <?php echo $posts[$i].'-'?>
         <ul>
             <li><?php foreach($posts[$i] as $value){
-            echo '{$value[$title]}: {$value[$author]} - {$value[$text]}' 
+            echo $value["title"].': '.$value["author"].'- '.$value["text"];
         }?></li>
         </ul>
         </li>
@@ -179,13 +184,13 @@ $classe = [
     </p>
 
     <h2>Snack 4</h2>
-    <p><?php echo $numbers ?></p>
+    <pre><?php echo $results ?></pre>
 
     <h2>Snack 5</h2>
-    <p>testo lungo: <?php $testo ?></p>
-    <p>testo tagliato: <?php for($i = 0; $i < count($posts); $i++){ ?>
+    <p>testo lungo: <?php echo $testo; ?></p>
+    <p>testo tagliato: <?php for($i = 0; $i < count($tagliato); $i++){ ?>
         <br>
-        <span><?php echo $tagliato[$i] ?></p></span>
+        <span><?php echo $tagliato[$i].'.' ?></p></span>
         <br>
 
 
@@ -194,16 +199,16 @@ $classe = [
 
     <h2>Snack 6</h2>
     <ul class="teach">
-    <?php for($i = 0; $i < count($db[$teachers]); $i++){ ?>
+    <?php for($i = 0; $i < count($db["teachers"]); $i++){ ?>
         <li>
-        <?php echo '{$db[$teachers][$i][$name]} {$db[$teachers][$i][$lastname]}';?>
+        <?php echo $db["teachers"][$i]["name"].' '.$db["teachers"][$i]["lastname"];?>
         </li>
         <?php };?>
     </ul>
     <ul class="pm">
-    <?php for($i = 0; $i < count($db[$pm]); $i++){ ?>
+    <?php for($i = 0; $i < count($db["pm"]); $i++){ ?>
         <li>
-        <?php echo '{$db[$pm][$i][$name]} {$db[$pm][$i][$lastname]}';?>
+        <?php echo $db["pm"][$i]["name"].' '.$db["pm"][$i]["lastname"];?>
         </li>
         <?php };?>
     </ul>
@@ -211,8 +216,8 @@ $classe = [
     <h2>Snack 7</h2>
     <?php for($i = 0; $i < count($classe); $i++){ ?>
         <p>
-        <?php echo '{$classe[$i][$nome]} {$classe[$i][$cognome]}'; ?>
-        <?php echo $average = array_sum($classe[$i][$voti])/count($classe[$i][$voti]); ?>
+        <?php echo $classe[$i]["nome"].' '.$classe[$i]["cognome"]; ?>
+        <?php echo $average = array_sum($classe[$i]["voti"])/count($classe[$i]["voti"]); ?>
         </p>
     
     <?php }?>
